@@ -14,4 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/img/{path}/{name}/{type}', [ImgController::class, 'get']);
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\DoorController;
+
+Route::get('/image/{image}', [ImageController::class, 'get']);
+
+Route::prefix('door')->group(function () { // bookmaker
+    Route::get('/', [DoorController::class, 'get']);
+    Route::get('/{door}', [DoorController::class, 'id']);
+});
+
+
+
+//  [ ] - избранные двери
