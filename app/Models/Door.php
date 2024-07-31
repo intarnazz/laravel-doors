@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Door extends Model
 {
     use HasFactory;
+
     protected $guarded = ['id'];
 
     public function image_front()

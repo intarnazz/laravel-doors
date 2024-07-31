@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
                 'brand_id' => $i,
                 'material_id' => $i,
                 'name' => $faker->word,
+                'is_favorite' => true,
                 'price' => $faker->randomFloat(0, 2000, 20000),
             ]);
         }

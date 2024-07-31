@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->foreignIdFor(\App\Models\Material::class)->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->integer('price');
+            $table->boolean('is_favorite')->default(false);
             $table->timestamps();
         });
     }
