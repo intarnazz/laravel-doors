@@ -15,14 +15,20 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Factory::create();
 
-        for ($i = 1; $i < 11; $i++) {
-            \App\Models\Image::create([
-                'path' => 'image.jpg',
-                'title' => 'title',
-                'alt' => 'alt',
-                'style' => '',
-            ]);
+        \App\Models\Image::create([
+            'path' => 'image1.png',
+            'title' => 'title',
+            'alt' => 'alt',
+            'style' => '',
+        ]);
+        \App\Models\Image::create([
+            'path' => 'image2.png',
+            'title' => 'title',
+            'alt' => 'alt',
+            'style' => '',
+        ]);
 
+        for ($i = 1; $i < 11; $i++) {
             \App\Models\Brand::create([
                 'name' => $faker->company,
             ]);
@@ -30,8 +36,8 @@ class DatabaseSeeder extends Seeder
                 'name' => $faker->word,
             ]);
             \App\Models\Door::create([
-                'image_front_id' => $i,
-                'image_back_id' => $i,
+                'image_front_id' => 1,
+                'image_back_id' => 2,
                 'brand_id' => $i,
                 'material_id' => $i,
                 'name' => $faker->word,
