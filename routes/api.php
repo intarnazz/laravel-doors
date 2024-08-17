@@ -21,6 +21,7 @@ Route::get('/image/{image}', [ImageController::class, 'get']);
 
 Route::prefix('door')->group(function () {
     Route::get('/', [DoorController::class, 'get']);
+    Route::get('/filters', [DoorController::class, 'getFilters']);
     Route::get('/{door}', [DoorController::class, 'id']);
 });
 

@@ -32,10 +32,10 @@ class DatabaseSeeder extends Seeder
 
 
             \App\Models\Brand::create([
-                'name' => $faker->company,
+                'name' => $faker->unique()->company,
             ]);
             \App\Models\Material::create([
-                'name' => $faker->word,
+                'name' => $faker->unique()->word,
             ]);
             \App\Models\Door::create([
                 'image_front_id' => $img_id - 1,

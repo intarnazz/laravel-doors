@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\DoorResource;
 use App\Http\Resources\successResource;
+use App\Models\Brand;
 use App\Models\Door;
 use App\Models\Image;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,6 +49,19 @@ class DoorController extends Controller
                 'massage' => 'Success',
                 'data' => $door,
             ], 200
+        );
+    }
+    function getFilters()
+    {
+        $res = [];
+        $res['brand'] = Brand::all();
+        $res['material'] = Material::all();
+
+        return response([
+            'success' => true,
+            'massage' => 'Success',
+            'data' => $res,
+        ], 200
         );
     }
 }
