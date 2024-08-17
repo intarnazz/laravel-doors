@@ -47,5 +47,20 @@ class DatabaseSeeder extends Seeder
                 'price' => $faker->randomFloat(0, 2000, 20000),
             ]);
         }
+
+        $img_id = 1;
+        for ($i = 1; $i < 11; $i++) {
+            $img_id++;
+            $img_id++;
+            \App\Models\Door::create([
+                'image_front_id' => $img_id - 1,
+                'image_back_id' => $img_id - 2,
+                'brand_id' => $i,
+                'material_id' => $i,
+                'name' => $faker->word,
+                'is_favorite' => false,
+                'price' => $faker->randomFloat(0, 2000, 20000),
+            ]);
+        }
     }
 }
