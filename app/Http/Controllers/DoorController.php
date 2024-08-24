@@ -15,19 +15,18 @@ class DoorController extends Controller
 {
     function get(Request $request)
     {
+        $ids = $request->header('ids', '');
+        $count = Door::count();
+        $idsArray = $ids ? explode(',', $ids) : range(1, $count);
         $skip = $request->header('skip', 0);
         $take = $request->header('take', 6);
 
-        $doors = Door::with([
-            'image_front',
-            'image_back',
-            'brand',
-            'material'
-        ])
-            ->skip($skip)->take($take)
+        $doors = Door::with(['image_front', 'image_back', 'brand', 'material'])
+            ->whereIn('id', $idsArray)
+            ->skip($skip)
+            ->take($take)
             ->get();
 
-//        $doors = DoorResource::collection($doors);
         return response([
             'success' => true,
             'massage' => 'Success',
@@ -35,9 +34,7 @@ class DoorController extends Controller
             "pagingInfo" => [
                 "limit" => $skip + $take,
                 "offset" => +$skip,
-                "totalCount" => Door::count(),
-            ]
-        ], 200
+                "totalCount" => count($idsArray),]], 200
         );
     }
 
@@ -51,6 +48,7 @@ class DoorController extends Controller
             ], 200
         );
     }
+
     function getFilters()
     {
         $res = [];
