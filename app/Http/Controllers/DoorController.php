@@ -40,6 +40,7 @@ class DoorController extends Controller
 
     function id(Door $door)
     {
+        $door->load('image_front', 'image_back', 'brand', 'material');
         return response(
             [
                 'success' => true,
