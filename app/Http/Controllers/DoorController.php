@@ -20,9 +20,16 @@ class DoorController extends Controller
         $idsArray = $ids ? explode(',', $ids) : range(1, $count);
         $skip = $request->header('skip', 0);
         $take = $request->header('take', 6);
+        $response_id = $request->header('responseId', 1);
+        $brand = $request->header('brand', '');
+        $material = $request->header('material', '');
+        $brandArr = $brand ? explode(',', $brand) : range(1, Brand::count());
+        $materialArr = $material ? explode(',', $material) : range(1, Material::count());
 
         $doors = Door::with(['image_front', 'image_back', 'brand', 'material'])
             ->whereIn('id', $idsArray)
+            ->whereIn('brand_id', $brandArr)
+            ->whereIn('material_id', $materialArr)
             ->skip($skip)
             ->take($take)
             ->get();
@@ -31,6 +38,7 @@ class DoorController extends Controller
             'success' => true,
             'massage' => 'Success',
             'data' => $doors,
+            'response_id' => $response_id,
             "pagingInfo" => [
                 "limit" => $skip + $take,
                 "offset" => +$skip,
