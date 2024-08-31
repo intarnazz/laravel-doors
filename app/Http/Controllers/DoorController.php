@@ -26,7 +26,7 @@ class DoorController extends Controller
         $brandArr = $brand ? explode(',', $brand) : range(1, Brand::count());
         $materialArr = $material ? explode(',', $material) : range(1, Material::count());
 
-        $doors = Door::with(['image_front', 'image_back', 'brand', 'material'])
+        $doors = Door::with(['image_front', 'image_back', 'brand', 'material', 'components'])
             ->whereIn('id', $idsArray)
             ->whereIn('brand_id', $brandArr)
             ->whereIn('material_id', $materialArr)

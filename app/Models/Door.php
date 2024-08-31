@@ -30,4 +30,9 @@ class Door extends Model
     {
         return $this->belongsTo(Material::class);
     }
+    public function components()
+    {
+        return $this->belongsToMany(Component::class, 'component_doors', 'door_id', 'component_id')
+            ->withTimestamps();
+    }
 }
