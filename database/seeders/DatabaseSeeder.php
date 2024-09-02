@@ -53,6 +53,7 @@ class DatabaseSeeder extends Seeder
                 'image_back_id' => $img_id - 2,
                 'brand_id' => $i,
                 'material_id' => $i,
+                'type' => 'entrance',
                 'name' => $faker->word,
                 'is_favorite' => true,
                 'price' => $faker->randomFloat(0, 2000, 20000),

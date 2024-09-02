@@ -9,6 +9,16 @@ class Door extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name',
+        'type',
+        'price',
+        'is_favorite',
+        'image_front_id',
+        'image_back_id',
+        'brand_id',
+        'material_id',
+    ];
+
     protected $guarded = ['id'];
 
     public function image_front()
@@ -26,10 +36,16 @@ class Door extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function full()
+    {
+        return $this->load('image_front', 'image_back', 'brand', 'material', 'components');
+    }
+
     public function material()
     {
         return $this->belongsTo(Material::class);
     }
+
     public function components()
     {
         return $this->belongsToMany(Component::class, 'component_doors', 'door_id', 'component_id')

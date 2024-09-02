@@ -48,7 +48,20 @@ class DoorController extends Controller
 
     function id(Door $door)
     {
-        $door->load('image_front', 'image_back', 'brand', 'material');
+        $door->full();
+        return response(
+            [
+                'success' => true,
+                'massage' => 'Success',
+                'data' => $door,
+            ], 200
+        );
+    }
+
+    function patch(Request $request, Door $door)
+    {
+        $door->update($request->only($door->getFillable()));
+        $door->save();
         return response(
             [
                 'success' => true,
