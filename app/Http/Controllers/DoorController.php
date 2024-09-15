@@ -60,6 +60,18 @@ class DoorController extends Controller
     function patch(Request $request, Door $door)
     {
         $door->update($request->only($door->getFillable()));
+
+        $brand = Brand::where('name', $request->brand['name'])
+            ->first();
+        if ($brand) {
+            $door->brand_id = $brand->id;
+        }
+        $material = Material::where('name', $request->material['name'])
+            ->first();
+        if ($material) {
+            $door->material_id = $material->id;
+        }
+
         $door->save();
         return response(
             [
