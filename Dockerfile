@@ -33,11 +33,6 @@ COPY . /var/www
 # Устанавливаем правильные права на директории
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-# Выполняем команды Laravel для кеширования конфигураций, маршрутов и представлений
-RUN php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache
-
 # Устанавливаем рабочую директорию в контейнере
 WORKDIR /var/www/html
 
