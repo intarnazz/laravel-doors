@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\DoorResource;
-use App\Http\Resources\successResource;
+use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
 use App\Models\Door;
 use App\Models\Image;
@@ -36,16 +35,48 @@ class BrandController extends Controller
         );
     }
 
-    function patch(Request $request, Brand $brand)
+    function patch(BrandRequest $request, Brand $brand)
     {
-        $brand->update($request->only($brand->getFillable()));
+        $brand->update($request->validated());
         $brand->save();
         return response(
             [
                 'success' => true,
                 'massage' => 'Success',
-                'data' => $brand,
+                'brand' => $brand,
             ], 200
         );
+    }
+
+    function add(BrandRequest $request)
+    {
+        $brand = Brand::create($request->validated());
+        $brand->save();
+
+        return response([
+            "success" => true,
+            "message" => "Success",
+            'brand' => $brand
+        ]);
+    }
+
+    function delete(Request $request, Brand $brand)
+    {
+        if (Door::where('brand_id', $brand->id)->count() <= 0 || $request->delete === 'delete') {
+            $brand->delete();
+            return response(
+                [
+                    'success' => true,
+                    'massage' => 'Success',
+                ], 200
+            );
+        } else {
+            return response(
+                [
+                    'success' => false,
+                    'massage' => 'Unprocessable Content',
+                ], 422
+            );
+        }
     }
 }

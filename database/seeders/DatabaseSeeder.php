@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Factory::create();
 
+        \App\Models\User::create([
+            'login' => 'laravel',
+            'password' => 'secret',
+        ]);
 
         \App\Models\Component::create([
             'name' => $faker->unique()->word,

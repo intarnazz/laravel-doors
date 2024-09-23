@@ -53,14 +53,20 @@ Route::middleware('auth:api')->group(function () {
 
     Route::prefix('material')->group(function () {
         Route::patch('/{material}', [MaterialController::class, 'patch']);
+        Route::delete('/{material}', [MaterialController::class, 'delete']);
+        Route::post('/', [MaterialController::class, 'add']);
     });
 
     Route::prefix('component')->group(function () {
         Route::patch('/{component}', [ComponentController::class, 'patch']);
+        Route::delete('/{component}', [ComponentController::class, 'delete']);
+        Route::post('/', [ComponentController::class, 'add']);
     });
 
     Route::prefix('brand')->group(function () {
         Route::patch('/{brand}', [BrandController::class, 'patch']);
+        Route::post('/', [BrandController::class, 'add']);
+        Route::delete('/{brand}', [BrandController::class, 'delete']);
     });
 
     Route::prefix('door')->group(function () {

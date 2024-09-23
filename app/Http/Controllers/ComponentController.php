@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\DoorResource;
-use App\Http\Resources\successResource;
+use App\Http\Requests\ComponentRequest;
 use App\Models\Brand;
 use App\Models\Component;
 use App\Models\Door;
@@ -37,16 +36,48 @@ class ComponentController extends Controller
         );
     }
 
-    function patch(Request $request, Brand $component)
+    function patch(ComponentRequest $request, Component $component)
     {
-        $component->update($request->only($component->getFillable()));
+        $component->update($request->validated());
         $component->save();
         return response(
             [
                 'success' => true,
                 'massage' => 'Success',
-                'data' => $component,
+                'component' => $component,
             ], 200
         );
+    }
+
+    function add(ComponentRequest $request)
+    {
+        $component = Material::create($request->validated());
+        $component->save();
+
+        return response([
+            "success" => true,
+            "message" => "Success",
+            'component' => $component
+        ]);
+    }
+
+    function delete(Request $request, Component $material)
+    {
+        if (Door::where('brand_id', $material->id)->count() <= 0 || $request->delete === 'delete') {
+            $material->delete();
+            return response(
+                [
+                    'success' => true,
+                    'massage' => 'Success',
+                ], 200
+            );
+        } else {
+            return response(
+                [
+                    'success' => false,
+                    'massage' => 'Unprocessable Content',
+                ], 422
+            );
+        }
     }
 }
