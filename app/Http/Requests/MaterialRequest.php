@@ -22,12 +22,12 @@ class MaterialRequest extends FormRequest
      */
     public function rules(): array
     {
-        $brandId = $this->route('material');
+        $id = $this->route('material');
         return [
 
             'name' => [
                 'required',
-                Rule::unique('materials')->ignore($brandId),
+                Rule::unique('materials')->ignore($id),
             ],
         ];
     }

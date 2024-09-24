@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Component_door extends Model
 {
     use HasFactory;
+    protected $fillable = ['door_id', 'component_id'];
 }

@@ -63,7 +63,7 @@ class MaterialController extends Controller
 
     function delete(Request $request, Material $material)
     {
-        if (Door::where('brand_id', $material->id)->count() <= 0 || $request->delete === 'delete') {
+        if (Door::where('material_id', $material->id)->count() <= 0 || $request->delete === 'delete') {
             $material->delete();
             return response(
                 [

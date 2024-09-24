@@ -15,6 +15,4 @@ class Component extends Model
         'name',
         'price',
     ];
-
-
 }

@@ -22,12 +22,12 @@ class BrandRequest extends FormRequest
      */
     public function rules(): array
     {
-        $brandId = $this->route('brands');
+        $id = $this->route('brands');
         return [
 
             'name' => [
                 'required',
-                Rule::unique('brands')->ignore($brandId),
+                Rule::unique('brands')->ignore($id),
             ],
         ];
     }

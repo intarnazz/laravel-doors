@@ -22,12 +22,12 @@ class ComponentRequest extends FormRequest
      */
     public function rules(): array
     {
-        $brandId = $this->route('component');
+        $id = $this->route('component');
         return [
 
             'name' => [
                 'required',
-                Rule::unique('components')->ignore($brandId),
+                Rule::unique('components')->ignore($id),
             ],
             "price" => "required|numeric",
         ];
