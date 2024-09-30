@@ -38,9 +38,7 @@ class Door extends Model
 
     public function full()
     {
-        $res = $this->load('image_front', 'image_back', 'material', 'components');
-//        $res = $this->load('brand');
-        return $res;
+        return $this->load('image_front', 'image_back', 'brand', 'material', 'components');
     }
 
     public function material()
