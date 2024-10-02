@@ -56,7 +56,7 @@ class ComponentController extends Controller
             [
                 'success' => true,
                 'massage' => 'Success',
-                'component' => $component,
+                'data' => $component,
             ], 200
         );
     }
@@ -74,7 +74,7 @@ class ComponentController extends Controller
         return response([
             "success" => true,
             "message" => "Success",
-            'component' => $component
+            'data' => $component
         ]);
     }
 

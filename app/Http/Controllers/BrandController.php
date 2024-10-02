@@ -43,7 +43,7 @@ class BrandController extends Controller
             [
                 'success' => true,
                 'massage' => 'Success',
-                'brand' => $brand,
+                'data' => $brand,
             ], 200
         );
     }
@@ -56,7 +56,7 @@ class BrandController extends Controller
         return response([
             "success" => true,
             "message" => "Success",
-            'brand' => $brand
+            'data' => $brand
         ]);
     }
 

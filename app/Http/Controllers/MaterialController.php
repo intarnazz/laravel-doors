@@ -44,7 +44,7 @@ class MaterialController extends Controller
             [
                 'success' => true,
                 'massage' => 'Success',
-                'material' => $material,
+                'data' => $material,
             ], 200
         );
     }
@@ -57,7 +57,7 @@ class MaterialController extends Controller
         return response([
             "success" => true,
             "message" => "Success",
-            'material' => $material
+            'data' => $material
         ]);
     }
 
