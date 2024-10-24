@@ -7,7 +7,7 @@ services:
         container_name: app
         working_dir: /var/www
         volumes:
-            - app-data:/var/www
+            - ./:/var/www
             - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
         networks:
             - app-network
@@ -17,7 +17,7 @@ services:
         container_name: webserver
         working_dir: /var/www
         volumes:
-            - app-data:/var/www
+            - ./:/var/www
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
         ports:
             - "8000:80"
