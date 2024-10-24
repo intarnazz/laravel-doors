@@ -20,6 +20,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\MaterialController;
+use GuzzleHttp\Client;
 
 Route::post('/authorization', [UserController::class, 'login']);
 Route::post('/registration', [UserController::class, 'reg']);
@@ -45,6 +46,15 @@ Route::prefix('component')->group(function () {
 Route::prefix('material')->group(function () {
     Route::get('/', [MaterialController::class, 'get']);
     Route::get('/{material}', [MaterialController::class, 'id']);
+});
+
+Route::prefix('test')->group(function () {
+    Route::get('/', function () {
+        $url = 'http://xn---33-5cdanekkarms5au6c.xn--p1ai/catalog/mezhkomnatnye_dveri/triadoors/l1-po-8334#v676108';
+        $client = new Client();
+        $response = $client->get($url);
+        return $response->getBody()->getContents();
+    });
 });
 
 
